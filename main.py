@@ -26,9 +26,6 @@ if CHANNEL_ACCESS_TOKEN is None:
     print('Specify CHANNEL_ACCESS_TOKEN as environment variable.')
     sys.exit(1)
 
-print(CHANNEL_SECRET, CHANNEL_ACCESS_TOKEN)
-print(type(CHANNEL_ACCESS_TOKEN))
-
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN, timeout=20)
 handler = WebhookHandler(CHANNEL_SECRET)
 
