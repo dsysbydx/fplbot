@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 from argparse import ArgumentParser
 
 from flask import Flask, request, abort
@@ -19,6 +20,10 @@ app = Flask(__name__)
 # get channel_secret and channel_access_token from your environment variable
 CHANNEL_SECRET  = os.getenv('CHANNEL_SECRET', None)
 CHANNEL_ACCESS_TOKEN = os.getenv('CHANNEL_ACCESS_TOKEN', None)
+#USER_ID = json.loads(os.getenv('USER_ID',None))
+USER_ID = os.getenv('USER_ID',None)
+print(USER_ID)
+
 if CHANNEL_SECRET is None:
     print('Specify CHANNEL_SECRET as environment variable.')
     sys.exit(1)
@@ -56,6 +61,11 @@ def callback():
 
     return 'OK'
 
+@app.route('/alert', methods=['GET', 'POST'])
+def alert():
+    app.logger.info("User ID: " + USER_ID)
+    line_bot_api.push_message(USER_ID, TextSendMessage(text='Hello World!'))
+    return 'Success'
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
