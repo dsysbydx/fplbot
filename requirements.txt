@@ -24,7 +24,7 @@ Jinja2==2.11.3
 line-bot-sdk==1.13.0
 MarkupSafe==1.1.1
 msgpack==0.6.1
-protobuf==3.9.1
+protobuf==3.18.3
 pyasn1==0.4.6
 pyasn1-modules==0.2.6
 pytz==2019.2
